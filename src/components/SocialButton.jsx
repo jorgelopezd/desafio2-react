@@ -1,9 +1,12 @@
-import { Button }  from 'react-bootstrap'
+import React from 'react';
+import { Button }  from 'react-bootstrap';
+import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const SocialButton = ({ button }) =>{
+
+const SocialButton = ({ icon, onClick }) =>{
     return (
-        <Button>
-            <i className={`fa-brands ${button} fa-xl`} />
+        <Button className='btn btn-light m-2' size='lg' onClick={onClick}>
+            <FontAwesomeIcon icon={icon}/>
         </Button>
     )
 }
