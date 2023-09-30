@@ -10,5 +10,4 @@ const SocialButton = ({ icon, onClick }) =>{
         </Button>
     )
 }
-
 export default SocialButton

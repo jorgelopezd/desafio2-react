@@ -2,22 +2,24 @@ import { useState } from 'react';
 import {FormControl, Button} from 'react-bootstrap';
 import Alert from './Alert';
 
-
-
-
-const Formulario = ({mostrarForm, mensajeExito, mensajeError}) => {
+const Formulario = ({mostrarForm}) => {
     const [nombre,setNombre] = useState("")
     const [email, setEmail] =useState("")
     const [contraseña, setContraseña] =useState("")
     const [confirmacion, setConfirmacion] = useState("")
+    const [mensajeExito,setMensajeExito] = useState("")
+    const [mensajeError,setMensajeError] = useState("");
 
 
-    
     const validarInput = (e) => {
         e.preventDefault();
 
+        setMensajeExito("");
+        setMensajeError("");
+
+
     if (nombre === '' || email === '' || contraseña ==='' || confirmacion ===''){
-        mostrarForm('Completa todos los campos','danger')
+        setMensajeError('Completa todos los campos','danger')
         return;
     }
 
@@ -32,8 +34,17 @@ const Formulario = ({mostrarForm, mensajeExito, mensajeError}) => {
         mostrarForm('Las contraseñas no coinciden', 'danger')
         return;
     }
-        mostrarForm('Registro exitoso', 'success')
+    setMensajeExito('Registro de forma exitosa')
+    inputclean();
     }
+
+    const inputclean = () =>{
+        setNombre('')
+        setEmail('')
+        setContraseña('')
+        setConfirmacion('')
+    }
+
     return(
         <>
             <p>O usa tu email para registrarte</p>
@@ -49,8 +60,8 @@ const Formulario = ({mostrarForm, mensajeExito, mensajeError}) => {
                 <Button variant="success" size="lg" type='submit'>Registrarse</Button>
                 </div>
 
-                {mensajeError && <Alert tipo='danger' mensaje={mensajeError} />}
-                {mensajeExito && <Alert tipo='success' mensaje={mensajeExito} />}  
+                {mensajeError && <Alert mensaje={mensajeError} tipo={'danger'} />}
+                {mensajeExito && <Alert mensaje={mensajeExito} tipo={'success'} />}
             </form>
         </>
     )
